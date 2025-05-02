@@ -23,6 +23,7 @@ public class Livros {
     private Integer id;
     private String titulo;
     private String anoDePublicacao;
+    @Enumerated(EnumType.ORDINAL)
     private Categoria categoria;
     private String editora;
 
