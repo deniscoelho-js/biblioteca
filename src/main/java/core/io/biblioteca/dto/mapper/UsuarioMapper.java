@@ -16,8 +16,8 @@ public class UsuarioMapper {
         return new ModelMapper().map(usuarioRequestDTO, Usuario.class);
     }
 
-    public UsuarioRequestDTO toUsuarioRequestDTO(Usuario usuario) {
-        return new ModelMapper().map(usuario, UsuarioRequestDTO.class);
+    public UsuarioResponseDTO toUsuarioResponseDTO(Usuario usuario) {
+        return new ModelMapper().map(usuario, UsuarioResponseDTO.class);
     }
 
     public List<UsuarioResponseDTO> toUsuarioListResponseDTOS(List<Usuario> usuarios) {

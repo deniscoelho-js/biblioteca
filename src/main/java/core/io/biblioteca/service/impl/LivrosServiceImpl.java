@@ -70,16 +70,16 @@ public class LivrosServiceImpl implements LivrosService {
                 case "anoDePublicacao" -> livro.setAnoDePublicacao((String) value);
                 case "categoria" -> livro.setCategoria(Categoria.valueOf((String) value)); // Supondo que Categoria é um enum
                 case "editora" -> livro.setEditora((String) value);
-                case "autores" -> livro.setAutores(
-                        ((List<Map<String, Object>>) value).stream()
-                                .map(autorData -> {
-                                    Autor autor = new Autor();
-                                    autor.setId((Integer) autorData.get("id"));
-                                    autor.setNome((String) autorData.get("nome"));
-                                    return autor;
-                                })
-                                .collect(Collectors.toList())
-                ); // Atualiza os autores a partir do Map
+//                case "autores" -> livro.setAutores(
+//                        ((List<Map<String, Object>>) value).stream()
+//                                .map(autorData -> {
+//                                    Autor autor = new Autor();
+//                                    autor.setId((Integer) autorData.get("id"));
+//                                    autor.setNome((String) autorData.get("nome"));
+//                                    return autor;
+//                                })
+//                                .collect(Collectors.toList())
+//                ); // Atualiza os autores a partir do Map
                 default -> throw new IllegalArgumentException(String.format("Campo %s não é formatável ou não existe", key));
             }
         });

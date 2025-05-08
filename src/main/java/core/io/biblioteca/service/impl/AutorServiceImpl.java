@@ -61,15 +61,15 @@ public class AutorServiceImpl implements AutorService {
         updates.forEach((key, value) -> {
             switch (key) {
                 case "nome" -> autor.setNome((String) value);
-                case "livros" -> autor.setLivros(
-                        ((List<Map<String, Object>>) value).stream()
-                                .map(livroData -> {
-                                    Integer livroId = (Integer) livroData.get("id");
-                                    return livrosRepository.findById(livroId)
-                                            .orElseThrow(() -> new EntityNotFoundException(String.format("Livro com id %s não encontrado", livroId)));
-                                })
-                                .collect(Collectors.toList())
-                ); // Atualiza a lista de livros a partir do Map
+//                case "livros" -> autor.setLivros(
+//                        ((List<Map<String, Object>>) value).stream()
+//                                .map(livroData -> {
+//                                    Integer livroId = (Integer) livroData.get("id");
+//                                    return livrosRepository.findById(livroId)
+//                                            .orElseThrow(() -> new EntityNotFoundException(String.format("Livro com id %s não encontrado", livroId)));
+//                                })
+//                                .collect(Collectors.toList())
+//                ); // Atualiza a lista de livros a partir do Map
                 default ->
                         throw new IllegalArgumentException(String.format("Campo %s não é formatável ou não existe", key));
             }
