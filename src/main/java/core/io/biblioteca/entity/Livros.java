@@ -1,5 +1,8 @@
 package core.io.biblioteca.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import core.io.biblioteca.enums.Categoria;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,8 +30,13 @@ public class Livros {
     private Categoria categoria;
     private String editora;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "autor_livro", joinColumns = @JoinColumn(name = "livro_id"),
     inverseJoinColumns = @JoinColumn(name = "autor_id"))
     private List<Autor> autores = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
 }

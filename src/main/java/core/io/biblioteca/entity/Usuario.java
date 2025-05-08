@@ -1,14 +1,12 @@
 package core.io.biblioteca.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +15,16 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Autor {
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "autor_id")
     private Integer id;
     private String nome;
+    private String email;
+    private String senha;
+    private LocalDateTime dataDeRegistro;
 
-    @ManyToMany(mappedBy = "autores")
+    @OneToMany(mappedBy = "usuario")
     private List<Livros> livros = new ArrayList<>();
 }

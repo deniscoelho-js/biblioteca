@@ -1,5 +1,6 @@
 package core.io.biblioteca.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 public class AutorResponseDTO {
     private Integer id;
     private String nome;
-    private String nacionalidade;
-    private String dataDeNascimento;
-    private List<LivrosResponseDTO> livros = new ArrayList();
+
+//    @JsonIgnore
+//    private List<LivrosResponseDTO> livros = new ArrayList();
 }

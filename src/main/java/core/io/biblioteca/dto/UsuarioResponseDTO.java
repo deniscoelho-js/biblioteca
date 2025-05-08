@@ -1,6 +1,5 @@
 package core.io.biblioteca.dto;
 
-import core.io.biblioteca.entity.Livros;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,12 +8,13 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class AutorRequestDTO {
-
+@AllArgsConstructor
+@Getter
+@Setter
+public class UsuarioResponseDTO {
     private String nome;
-    private List<Livros> livros = new ArrayList<>();
+    private String email;
+
+    private List<LivrosResponseDTO> livros = new ArrayList<>();
 }

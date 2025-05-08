@@ -6,15 +6,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class AutorRequestDTO {
+@AllArgsConstructor
+@Getter
+@Setter
+public class UsuarioRequestDTO {
 
     private String nome;
+    private String email;
+    private String senha;
+    private LocalDateTime dataDeRegistro;
+
     private List<Livros> livros = new ArrayList<>();
 }

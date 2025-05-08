@@ -61,8 +61,6 @@ public class AutorServiceImpl implements AutorService {
         updates.forEach((key, value) -> {
             switch (key) {
                 case "nome" -> autor.setNome((String) value);
-                case "nacionalidade" -> autor.setNacionalidade((String) value);
-                case "dataDeNascimento" -> autor.setDataDeNascimento((String) value); // Supondo que é uma string válida
                 case "livros" -> autor.setLivros(
                         ((List<Map<String, Object>>) value).stream()
                                 .map(livroData -> {
