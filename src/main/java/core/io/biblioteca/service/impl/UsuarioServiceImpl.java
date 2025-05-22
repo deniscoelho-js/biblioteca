@@ -16,6 +16,8 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -25,11 +27,12 @@ import java.util.Optional;
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
+
     private final UsuarioMapper usuarioMapper;
     private final UsuarioRepository usuarioRepository;
     private final LivrosRepository livrosRepository;
     private final LivrosService livrosService;
-    private final LivrosResponseDTO livrosResponseDTO;
+//    private final LivrosResponseDTO livrosResponseDTO;
     private final LivrosMapper livrosMapper;
 
     @Override
@@ -84,20 +87,26 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 //    @Override
 //    public UsuarioResponseDTO adicionarLivroParaUsuario(Integer id, LivrosRequestDTO livrosRequestDTO) {
-//        Livros livroEntity = livrosMapper.toLivros(livrosRequestDTO);
+//        // Busca o usuário diretamente do repositório
+//        Usuario usuario = usuarioRepository.findById(id)
+//                .orElseThrow(() -> new EntityNotFoundException(String.format("Usuário com id %s não encontrado", id)));
 //
-//        UsuarioResponseDTO usuario = buscarUsuarioPorId(id);
-//        LivrosService livroId = (LivrosService) livrosService.buscarLivroPorId(livroEntity.getId());
+//        // Busca o livro pelo ID informado no request DTO
+//        Livros livro = livrosRepository.findById(livrosRequestDTO.getId())
+//                .orElseThrow(() -> new EntityNotFoundException(String.format("Livro com id %s não encontrado", livrosRequestDTO.getId())));
 //
-//        LivrosResponseDTO livros = livrosService.buscarLivroPorId(livroEntity.getId());
-//
-//        if (!usuario.getLivros().contains(livros)) {
-//            usuario.getLivros().add(livros);
+//        // Verifica se o livro já está na lista do usuário
+//        if (!usuario.getLivros().contains(livro)) {
+//            usuario.getLivros().add(livro);
 //        } else {
-//            throw new IllegalArgumentException(String.format("O livro com id %s já está na lista do usuário", livros.getId()));
+//            throw new IllegalArgumentException(String.format("O livro com id %s já está na lista do usuário", livro.getId()));
 //        }
 //
-//        usuarioRepository.save(usuarioMapper.toUsuario(usuario));
+//        // Salva a entidade atualizada no banco de dados
+//        usuarioRepository.save(usuario);
+//
+//        // Retorna a versão DTO do usuário atualizado
+//        return usuarioMapper.toUsuarioResponseDTO(usuario);
 //    }
 
 
@@ -105,6 +114,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         // Busca a entidade Usuario diretamente do repositório
         Livros livroEntity = livrosMapper.toLivros(livrosRequestDTO);
 
+        System.out.println("id do usuario" + id);
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Usuário com id %s não encontrado", id)));
 
@@ -123,6 +133,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuarioAtualizado = usuarioRepository.save(usuario);
 
         // Retorna a versão DTO do usuário atualizado
+
+        System.out.println("id do usuario" + usuario.getId());
         return usuarioMapper.toUsuarioResponseDTO(usuarioAtualizado);
     }
 }

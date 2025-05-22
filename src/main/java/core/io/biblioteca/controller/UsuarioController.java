@@ -1,6 +1,6 @@
 package core.io.biblioteca.controller;
 
-import core.io.biblioteca.dto.AutorResponseDTO;
+import core.io.biblioteca.dto.LivrosRequestDTO;
 import core.io.biblioteca.dto.UsuarioRequestDTO;
 import core.io.biblioteca.dto.UsuarioResponseDTO;
 import core.io.biblioteca.service.UsuarioService;
@@ -48,7 +48,7 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> editarUsuario(@PathVariable Integer id, @RequestBody Map<String, Object> updates) {
         try {
             UsuarioResponseDTO usuario = usuarioService.editarUsuario(id, updates);
@@ -59,5 +59,5 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
-
+    
 }
